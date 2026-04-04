@@ -1,0 +1,387 @@
+:root {
+    --shade-1: #2e2a24;
+    --shade-2: #5c4a3d;
+    --shade-3: #a46b37;
+    --shade-4: #d9a06f;
+    --shade-5: #f1e0c8;
+    --accent: #b1450b;
+    --accent-soft: #e79c5e;
+    --text: #2d2923;
+    --panel: rgba(237, 229, 216, 0.9);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-block-size: 100vh;
+    background: radial-gradient(circle at top left, rgba(212, 149, 74, 0.14), transparent 24%),
+                linear-gradient(180deg, #f5ede3 0%, #f2e6d5 100%);
+    color: var(--text);
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.site-head {
+    background: linear-gradient(135deg, #8c5a2c 0%, #4a3c30 100%);
+    color: #fff;
+}
+
+.brand-shell {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: 60px;
+    min-block-size: 60px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    font-size: 1.4rem;
+}
+
+.eyebrow {
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 0.78rem;
+}
+
+.brand-title {
+    font-size: clamp(1.6rem, 2.3vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.btn-terra,
+.btn-outline-terra,
+.btn-ghost {
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.btn-terra {
+    background: var(--accent);
+    color: white;
+    border: 1px solid transparent;
+}
+
+.btn-terra:hover,
+.btn-terra:focus {
+    background: #982f08;
+}
+
+.btn-outline-terra {
+    color: var(--shade-1);
+    border: 1px solid var(--accent);
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.btn-outline-terra:hover,
+.btn-outline-terra:focus {
+    background: rgba(177, 69, 11, 0.08);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-guide {
+    padding: 0.95rem 1.45rem;
+}
+
+.nav-shell {
+    background: rgba(255, 255, 255, 0.95);
+    border-block-start: 1px solid rgba(0,0,0,0.05);
+    border-block-end: 1px solid rgba(0,0,0,0.05);
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--shade-1);
+    text-decoration: none;
+    padding: 0.75rem 0.85rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: rgba(177, 69, 11, 0.12);
+    color: var(--accent);
+}
+
+.nav-user {
+    font-weight: 600;
+    color: var(--shade-1);
+}
+
+.page-shell {
+    position: relative;
+}
+
+.page-intro {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(104, 50, 12, 0.12);
+    backdrop-filter: blur(10px);
+}
+
+.page-title {
+    font-size: clamp(1.7rem, 2.5vw, 2.8rem);
+    margin-block-end: 0.5rem;
+    font-weight: 700;
+}
+
+.page-copy {
+    color: #4d4239;
+    font-size: 1rem;
+}
+
+.flash-shell .alert {
+    border-radius: 1.1rem;
+}
+
+.card,
+.report-card,
+.dashboard-card {
+    border: 1px solid rgba(111, 65, 34, 0.14);
+    border-radius: 1.3rem;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 15px 40px rgba(50, 34, 20, 0.08);
+}
+
+.card-header,
+.report-card-header {
+    background: rgba(180, 113, 56, 0.08);
+    border-block-end: 1px solid rgba(111, 65, 34, 0.08);
+}
+
+.section-panel {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(111, 65, 34, 0.12);
+    border-radius: 1.2rem;
+    padding: 1.7rem;
+}
+
+.metric-box,
+.metric-tile {
+    border-radius: 1.3rem;
+    padding: 1.5rem;
+    background: linear-gradient(180deg, rgba(241,224,200,0.9), rgba(209,160,111,0.15));
+    border: 1px solid rgba(111, 65, 34, 0.1);
+}
+
+.metric-title {
+    color: var(--shade-2);
+    font-weight: 700;
+}
+
+.metric-value {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--shade-1);
+}
+
+.table thead th {
+    background: rgba(177, 69, 11, 0.08);
+}
+
+.guide-panel {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    inline-size: min(360px, 100vw);
+    block-size: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    border-inline-start: 1px solid rgba(111, 65, 34, 0.14);
+    padding: 1.5rem;
+    box-shadow: -12px 0 40px rgba(50, 34, 20, 0.08);
+    overflow-y: auto;
+    z-index: 1050;
+}
+
+.guide-panel.d-none { display: none; }
+
+.guide-panel-header {
+    margin-block-end: 1rem;
+}
+
+.guide-welcome {
+    margin-block-end: 1rem;
+    color: #5f4d41;
+}
+
+.guide-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.guide-step {
+    border: 1px solid rgba(177, 69, 11, 0.15);
+    border-radius: 1.2rem;
+    background: rgba(245, 230, 214, 0.92);
+    padding: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.guide-step:hover,
+.guide-step.active {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(141, 85, 38, 0.12);
+}
+
+.guide-step-title {
+    font-weight: 700;
+    margin-block-end: 0.35rem;
+}
+
+.guide-step-description {
+    margin: 0;
+    color: #4c3b33;
+}
+
+.guide-step-index {
+    inline-size: 2rem;
+    block-size: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.9rem;
+    background: var(--accent-soft);
+    color: var(--shade-1);
+    font-weight: 700;
+    margin-inline-end: 0.75rem;
+}
+
+.guide-panel-footer {
+    margin-block-start: 1.5rem;
+}
+
+.guide-highlight {
+    position: relative;
+    box-shadow: 0 0 0 4px rgba(177, 69, 11, 0.18), 0 14px 32px rgba(87, 42, 13, 0.14);
+    border-color: rgba(177, 69, 11, 0.36) !important;
+    transform: scale(1.01);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 105;
+}
+
+.auth-panel,
+.assessment-panel,
+.governance-panel,
+.training-panel,
+.reports-panel {
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(111, 65, 34, 0.14);
+    border-radius: 1.5rem;
+    padding: 1.8rem;
+}
+
+.auth-layout {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.login-card {
+    padding: 2rem;
+    border-radius: 1.5rem;
+    background: rgba(255,255,255,0.96);
+    border: 1px solid rgba(111, 65, 34, 0.14);
+}
+
+.login-card h5 {
+    font-weight: 700;
+}
+
+.login-hero {
+    padding: 2rem;
+    border-radius: 1.5rem;
+    background: linear-gradient(180deg, rgba(196,140,84,0.18), rgba(180,120,65,0.06));
+    border: 1px solid rgba(111, 65, 34, 0.1);
+}
+
+.login-hero p {
+    color: #5f4d41;
+}
+
+.hero-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(177, 69, 11, 0.12);
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    margin-block-end: 1rem;
+}
+
+.hero-flag span {
+    font-weight: 700;
+}
+
+.report-print-header {
+    border-block-end: 2px solid rgba(111, 65, 34, 0.18);
+    padding-block-end: 1rem;
+    margin-block-end: 1.5rem;
+}
+
+.report-print-title {
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-size: 0.9rem;
+    margin-block-end: 0.5rem;
+}
+
+.report-print-block {
+    margin-block-end: 1.75rem;
+}
+
+.report-print-block h3 {
+    margin-block-end: 0.85rem;
+}
+
+@media print {
+    body {
+        background: white;
+        color: #1f1b17;
+    }
+    .site-head,
+    .nav-shell,
+    .site-footer,
+    #guidePanel,
+    .btn,
+    .alert,
+    .no-print {
+        display: none !important;
+    }
+    .page-shell {
+        padding: 0;
+    }
+    .card,
+    .metric-box,
+    .section-panel {
+        box-shadow: none;
+        border: none;
+    }
+}
