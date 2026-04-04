@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}Assessment — TCCP{% endblock %}
+{% block page_heading %}NIST 800-171 Assessment Overview{% endblock %}
+{% block page_subtitle %}Work through each control family and update status to keep your assessment current.{% endblock %}
+{% block page_actions %}
+<button class="btn btn-outline-terra" type="button" onclick="toggleGuide()">Open assessment guide</button>
+{% endblock %}
+{% block content %}
+<div class="section-panel mb-4" id="assessment-overview">
+    <h4 class="mb-3">Assessment summary</h4>
+    <p class="mb-0">Your current compliance level is <strong>{{ overall_pct }}%</strong> based on <strong>{{ implemented }}/{{ total_controls }}</strong> implemented controls.</p>
+</div>
+
+{% for family in families %}
+<div class="card mb-3" id="family-{{ family.id }}">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <div>
+            <h5 class="mb-1"><i class="fas fa-{{ family.icon }} me-2"></i>{{ family.name }} ({{ family.id }})</h5>
+            <small class="text-muted">{{ family.done }}/{{ family.total }} controls implemented — {{ family.pct }}%</small>
+        </div>
+        <span class="badge rounded-pill" style="background: rgba(177, 69, 11, 0.14); color: var(--shade-1);">Family progress</span>
+    </div>
+    <div class="card-body">
+        <div class="list-group">
+            {% for control in family.controls %}
+            <div class="list-group-item d-flex flex-column flex-md-row justify-content-between align-items-start gap-3 py-3">
+                <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-start gap-3">
+                        <div>
+                            <strong>{{ control.control_id }}</strong> {{ control.description }}
+                            <div class="text-muted small">Weight: {{ control.weight }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ms-md-3" style="min-width: 210px;">
+                    <select class="form-select form-select-sm status-select" data-control-id="{{ control.id }}">
+                        <option value="not_started" {% if control.status == 'not_started' %}selected{% endif %}>Not Started</option>
+                        <option value="in_progress" {% if control.status == 'in_progress' %}selected{% endif %}>In Progress</option>
+                        <option value="implemented" {% if control.status == 'implemented' %}selected{% endif %}>Implemented</option>
+                        <option value="not_applicable" {% if control.status == 'not_applicable' %}selected{% endif %}>Not Applicable</option>
+                    </select>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+{% block page_guide %}
+<div class="guide-step" data-step-target="#assessment-overview">
+    <div class="guide-step-title">Start with the summary</div>
+    <p class="guide-step-description">This overview shows your assessment progress and helps you decide which control families need focus.</p>
+</div>
+<div class="guide-step" data-step-target="#family-AC">
+    <div class="guide-step-title">Review a control family</div>
+    <p class="guide-step-description">Open each family card to see individual controls and update the status as work progresses.</p>
+</div>
+<div class="guide-step" data-step-target=".status-select">
+    <div class="guide-step-title">Update control status</div>
+    <p class="guide-step-description">Change the control state to Not Started, In Progress, Implemented, or Not Applicable.</p>
+</div>
+{% endblock %}
+{% block page_scripts %}
+<script>
+    document.querySelectorAll('.status-select').forEach(select => {
+        select.addEventListener('change', function() {
+            const controlId = this.dataset.controlId;
+            const status = this.value;
+            fetch(`/api/control/${controlId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: status })
+            });
+        });
+    });
+</script>
+{% endblock %}
