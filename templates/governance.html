@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Governance — TCCP{% endblock %}
+{% block page_heading %}Governance planning with tribal purpose{% endblock %}
+{% block page_subtitle %}Shape your cybersecurity governance plan with structured sections and guided content generation.{% endblock %}
+{% block page_actions %}
+<button class="btn btn-outline-terra" type="button" onclick="toggleGuide()">Open governance guide</button>
+{% endblock %}
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3 mb-4">
+    <div class="flex-grow-1 section-panel">
+        <h4 class="mb-3">Governance guidance</h4>
+        <p class="mb-0">Update each governance section with tribe-specific details, or use the auto-generate tool to create a strong baseline plan.</p>
+    </div>
+    <div class="d-flex gap-2">
+        <button id="generatePlanButton" class="btn btn-terra" onclick="generatePlan()">Generate Plan</button>
+        <a href="{{ url_for('governance_export') }}" class="btn btn-outline-terra">Export PDF</a>
+    </div>
+</div>
+
+{% for section in sections %}
+<div class="card mb-3" id="section-{{ section.id }}">
+    <div class="card-header"><h5 class="mb-0">{{ section.section_title }}</h5></div>
+    <div class="card-body">
+        <textarea class="form-control" rows="8" id="section-{{ section.id }}-textarea" onchange="saveSection({{ section.id }})">{{ section.content }}</textarea>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+{% block page_guide %}
+<div class="guide-step" data-step-target="#generatePlanButton">
+    <div class="guide-step-title">Generate foundational content</div>
+    <p class="guide-step-description">Use the generate button to create a full governance plan base you can customize for your tribe.</p>
+</div>
+<div class="guide-step" data-step-target="#section-1 textarea">
+    <div class="guide-step-title">Edit governance sections</div>
+    <p class="guide-step-description">Each section can be updated with your tribal goals, roles, and risk management priorities.</p>
+</div>
+{% endblock %}
+{% block page_scripts %}
+<script>
+    function saveSection(sectionId) {
+        const textarea = document.getElementById(`section-${sectionId}-textarea`);
+        if (!textarea) return;
+        fetch('/api/governance/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ section_id: sectionId, content: textarea.value })
+        });
+    }
+
+    function generatePlan() {
+        if (confirm('This will overwrite existing content. Continue?')) {
+            fetch('/api/governance/generate', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    }
+                });
+        }
+    }
+</script>
+{% endblock %}
