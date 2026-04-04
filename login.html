@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}Login — TCCP{% endblock %}
+{% block page_heading %}Welcome home. Secure your tribal digital heritage.{% endblock %}
+{% block page_subtitle %}Sign in or register to begin your guided compliance journey.{% endblock %}
+{% block page_actions %}
+<button class="btn btn-outline-terra" type="button" onclick="toggleGuide()">Need a quick tour?</button>
+{% endblock %}
+{% block content %}
+<div class="auth-layout row g-4 align-items-stretch">
+    <div class="col-lg-6">
+        <div class="login-hero">
+            <div class="hero-flag"><span>Tribal Guide</span> First steps to get started</div>
+            <h3 class="mb-3">Protecting sovereignty starts with awareness.</h3>
+            <p class="mb-4">Use your secure login to review compliance progress, manage your assessments, and build the governance plan your nation can trust.</p>
+            <ul class="list-unstyled mb-0">
+                <li class="mb-2"><i class="fas fa-arrow-right text-success me-2"></i>Track NIST controls by family</li>
+                <li class="mb-2"><i class="fas fa-arrow-right text-success me-2"></i>Review TCGP readiness and training progress</li>
+                <li class="mb-2"><i class="fas fa-arrow-right text-success me-2"></i>Get contextual guidance for every step</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-6" id="login-card">
+        <div class="login-card">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            {% if register %}
+                <h5 class="mb-4">Create your tribal workspace</h5>
+                <form method="POST" action="{{ url_for('register') }}">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tribe_name" class="form-label">Tribal Nation Name</label>
+                        <input type="text" class="form-control" id="tribe_name" name="tribe_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contact_name" class="form-label">Contact Name</label>
+                        <input type="text" class="form-control" id="contact_name" name="contact_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="contact_email" class="form-label">Contact Email</label>
+                        <input type="email" class="form-control" id="contact_email" name="contact_email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required minlength="8">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required minlength="8">
+                    </div>
+                    <button type="submit" class="btn btn-terra w-100 mb-3">Create Account</button>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-terra w-100">Back to Login</a>
+                </form>
+            {% else %}
+                <h5 class="mb-4">Sign in to your workspace</h5>
+                <form method="POST" action="{{ url_for('login') }}">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-terra w-100 mb-3">Sign In</button>
+                    <a href="{{ url_for('register') }}" class="btn btn-outline-terra w-100">Create New Account</a>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block page_guide %}
+<div class="guide-step" data-step-target=".hero-flag">
+    <div class="guide-step-title">Start with guidance</div>
+    <p class="guide-step-description">This note explains how to begin your tribal cybersecurity journey and what the app helps you manage.</p>
+</div>
+<div class="guide-step" data-step-target="#login-card">
+    <div class="guide-step-title">Sign in or register</div>
+    <p class="guide-step-description">Use this panel to access your tribal workspace and review your compliance details.</p>
+</div>
+{% endblock %}
