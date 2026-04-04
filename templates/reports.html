@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Reports — TCCP{% endblock %}
+{% block page_heading %}Reports and export tools{% endblock %}
+{% block page_subtitle %}Generate reports to capture your progress, gaps, and grant application details.{% endblock %}
+{% block page_actions %}
+<button class="btn btn-outline-terra" type="button" onclick="toggleGuide()">Show report guide</button>
+{% endblock %}
+{% block content %}
+<div class="row g-4">
+    <div class="col-md-6">
+        <div class="card report-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Compliance Summary</h5>
+                <p class="card-text">Create a compliance report with NIST progress and risk metrics.</p>
+                <a href="{{ url_for('report_compliance') }}" class="btn btn-terra">Generate Report</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card report-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Gap Analysis</h5>
+                <p class="card-text">See which controls still need attention to reach your compliance goals.</p>
+                <a href="{{ url_for('report_gap_analysis') }}" class="btn btn-terra">Generate Report</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card report-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">TCGP Grant Data</h5>
+                <p class="card-text">Export objective and task data for Tribal Cybersecurity Grant Program applications.</p>
+                <a href="{{ url_for('report_tcgp') }}" class="btn btn-terra">Generate Report</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block page_guide %}
+<div class="guide-step" data-step-target=".report-card">
+    <div class="guide-step-title">Generate your reports</div>
+    <p class="guide-step-description">Use these cards to build printable documentation for compliance, gaps, and grant-ready data.</p>
+</div>
+{% endblock %}
