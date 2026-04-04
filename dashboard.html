@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard — TCCP{% endblock %}
+{% block page_heading %}Dashboard — Tribal compliance at a glance{% endblock %}
+{% block page_subtitle %}Your tribe's current progress, risk posture, and grant objective status are all in one place.{% endblock %}
+{% block page_actions %}
+<button class="btn btn-outline-terra" type="button" onclick="toggleGuide()">Show guide</button>
+{% endblock %}
+{% block content %}
+<div class="row g-4">
+    <div class="col-lg-3" id="compliance-card">
+        <div class="metric-box text-center">
+            <div class="metric-title">NIST Compliance</div>
+            <div class="metric-value">{{ compliance_pct }}%</div>
+            <p class="mb-0">{{ implemented }}/{{ applicable }} controls implemented</p>
+        </div>
+    </div>
+    <div class="col-lg-3" id="sprs-card">
+        <div class="metric-box text-center">
+            <div class="metric-title">SPRS Score</div>
+            <div class="metric-value">{{ sprs_score }}</div>
+            <p class="mb-0">Target score: 110</p>
+        </div>
+    </div>
+    <div class="col-lg-3" id="risk-card">
+        <div class="metric-box text-center">
+            <div class="metric-title">Risk Level</div>
+            <div class="metric-value" style="color: {{ risk_color }};">{{ risk_level }}</div>
+            <p class="mb-0">Risk: {{ risk_score }}%</p>
+        </div>
+    </div>
+    <div class="col-lg-3" id="tcgp-card">
+        <div class="metric-box text-center">
+            <div class="metric-title">TCGP Progress</div>
+            <div class="metric-value">{{ tcgp_pct }}%</div>
+            <p class="mb-0">{{ completed_tasks }}/{{ total_tasks }} tasks complete</p>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4 g-4">
+    <div class="col-lg-6" id="family-progress">
+        <div class="card">
+            <div class="card-header"><h5 class="mb-0"><i class="fas fa-list-check me-2"></i>Control Family Progress</h5></div>
+            <div class="card-body">
+                <div class="list-group">
+                    {% for family in family_stats %}
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>{{ family.name }}</strong><br>
+                            <small>{{ family.done }}/{{ family.total }} complete</small>
+                        </div>
+                        <span class="badge rounded-pill" style="background: linear-gradient(90deg, #d97706, #b1450b); color:#fff;">{{ family.pct }}%</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6" id="tcgp-objectives">
+        <div class="card">
+            <div class="card-header"><h5 class="mb-0"><i class="fas fa-bullseye me-2"></i>TCGP Objectives</h5></div>
+            <div class="card-body">
+                <div class="row g-3">
+                    {% for obj in obj_stats %}
+                    <div class="col-md-6">
+                        <div class="section-panel">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <h6 class="mb-1">{{ obj.title }}</h6>
+                                    <small class="text-muted">{{ obj.done }}/{{ obj.total }} complete</small>
+                                </div>
+                                <div class="badge" style="background: {{ obj.color }}; color:white;">{{ obj.pct }}%</div>
+                            </div>
+                            <div class="progress" style="height: 10px; border-radius: 999px;">
+                                <div class="progress-bar" role="progressbar" style="width: {{ obj.pct }}%; background: {{ obj.color }};" aria-valuenow="{{ obj.pct }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block page_guide %}
+<div class="guide-step" data-step-target="#compliance-card">
+    <div class="guide-step-title">Review compliance status</div>
+    <p class="guide-step-description">See your tribe's NIST compliance percentage and the number of completed controls at a glance.</p>
+</div>
+<div class="guide-step" data-step-target="#risk-card">
+    <div class="guide-step-title">Understand current risk</div>
+    <p class="guide-step-description">Check the risk level and SPRS score to prioritize your next actions.</p>
+</div>
+<div class="guide-step" data-step-target="#family-progress">
+    <div class="guide-step-title">Track control families</div>
+    <p class="guide-step-description">Each NIST family shows how many controls are complete and where attention is needed.</p>
+</div>
+<div class="guide-step" data-step-target="#tcgp-objectives">
+    <div class="guide-step-title">Explore grant objectives</div>
+    <p class="guide-step-description">Review progress toward TCGP grant priorities and know which objectives need work.</p>
+</div>
+{% endblock %}
