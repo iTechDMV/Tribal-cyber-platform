@@ -1,0 +1,56 @@
+# 2. BIA Integration Config
+bia_config_yaml = '''# BIA Integration Configuration
+# For TPA reallocation and Contract Support Cost alignment
+
+tribal_nation: "[YOUR TRIBAL NATION NAME]"
+bia_region: "[WESTERN/EASTERN/NAVAJO/ETC]"
+bia_agency: "[YOUR BIA AGENCY]"
+
+# Tribal Priority Allocations
+tpa_base_funding: 0  # Annual TPA base amount
+tpa_fy2026: 0
+tpa_reallocation_percentage: 0.05  # 5% recommended
+
+# Contract Support Costs
+contract_support_rate: 0.25  # 25% typical, varies by tribe
+indirect_cost_rate: 0.20
+self_determination_contract: false
+
+# BIA Systems Integration
+fass_cms_cloud: false  # Financial Assistance and Social Services
+bia_facilities:
+  - name: "[BIA School Name]"
+    type: "school"
+    location: ""
+    network_integration: false
+    
+  - name: "[BIA Clinic Name]"
+    type: "clinic"
+    location: ""
+    network_integration: false
+    
+  - name: "[BIA Office Name]"
+    type: "admin"
+    location: ""
+    network_integration: false
+
+# BIA Construction Program Alignment
+bia_construction_projects: []
+
+# Cybersecurity Positions for CSC Calculation
+cybersecurity_positions:
+  - title: "Tribal CISO"
+    salary: 95000
+    benefits: 28000
+    fte: 1.0
+    
+  - title: "Security Analyst"
+    salary: 75000
+    benefits: 22000
+    fte: 2.0
+    
+  - title: "Cyber Technician"
+    salary: 55000
+    benefits: 16000
+    fte: 3.0
+'''
