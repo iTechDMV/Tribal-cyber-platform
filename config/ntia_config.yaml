@@ -1,0 +1,141 @@
+# 1. NTIA Config
+ntia_config_yaml = '''# NTIA TBCP 2026 Configuration
+# Template for tribal nations applying for NTIA funding
+
+tribal_name: "[YOUR TRIBAL NATION NAME]"
+tribal_affiliation: "[Federally Recognized Tribe]"
+
+# Federal Registration
+sam_gov:
+  active: false  # Set to true when registered
+  registration_date: ""
+  expiration_date: ""
+  cage_code: ""
+
+uei: "[YOUR UEI - 12 characters]"
+
+# Tribal Council Authorization
+tribal_council_resolution:
+  resolution_number: ""
+  adoption_date: ""
+  authorized_signatory: ""
+  signatory_title: ""
+  voting_record:
+    yes: 0
+    no: 0
+    abstain: 0
+
+# Consultation Documentation (REQUIRED for 2026)
+consultation_meetings:
+  - date: "2026-01-13"  # NTIA Tribal Consultation Session 1
+    type: "virtual"
+    attended: false
+    tribal_representatives: []
+    ntia_staff_present: []
+    topics_discussed: []
+    tribal_input_provided: ""
+    
+  - date: "2026-01-20"  # NTIA Tribal Consultation Session 2
+    type: "virtual"
+    attended: false
+    tribal_representatives: []
+    ntia_staff_present: []
+    topics_discussed: []
+    tribal_input_provided: ""
+
+# Technology Choice Documentation
+technology_choice:
+  tribal_preference: "[fiber/wireless/satellite/mixed]"
+  resolution_number: ""
+  consultation_input: ""
+  justification: "[Tribal-specific justification for technology choice]"
+  federal_pressure_assessment: "None - Tribal decision"
+
+# Climate Resilience (REQUIRED for 2026)
+climate_risks:
+  - risk: "extreme_heat"
+    severity: "high"
+    mitigation: "underground_fiber_hardened_equipment"
+  - risk: "wildfire"
+    severity: "high"
+    mitigation: "fire_resistant_enclosures_backup_systems"
+  - risk: "flooding"
+    severity: "medium"
+    mitigation: "elevated_equipment_waterproofing"
+
+resilience_measures:
+  - "Underground fiber in wildfire zones"
+  - "Backup power for all critical infrastructure"
+  - "Hardened equipment for temperature extremes"
+  - "Redundant connectivity paths"
+
+emergency_procedures:
+  documented: false
+  last_updated: ""
+  evacuation_plan: ""
+  backup_activation: ""
+
+# Project Budget
+award_number: "PENDING"
+total_budget: 2500000
+federal_share_percentage: 65
+tribal_share_percentage: 35
+expended_to_date: 0
+
+# Workforce Development (5% minimum = $125,000)
+workforce_budget: 125000
+workforce_enrolled: 0
+workforce_completed: 0
+certifications_earned: 0
+job_placements: 0
+apprentices_active: 0
+
+# Technical Metrics
+households_covered: 0
+households_protected: 0
+anchor_institutions: 0
+infrastructure_miles: 0
+incidents_prevented: 0
+vulnerabilities_patched: 0
+uptime_percentage: 99.9
+
+# Milestones
+milestones:
+  - name: "Phase 1: Foundation"
+    description: "Infrastructure assessment, procurement, staff hiring"
+    status: "not_started"
+    due_date: "2026-06-30"
+    deliverables: []
+    
+  - name: "Phase 2: Core Deployment"
+    description: "Edge security deployment, SIEM installation"
+    status: "not_started"
+    due_date: "2026-12-31"
+    deliverables: []
+    
+  - name: "Phase 3: Operations"
+    description: "24/7 monitoring activation, workforce training completion"
+    status: "not_started"
+    due_date: "2027-03-31"
+    deliverables: []
+    
+  - name: "Phase 4: Sustainability"
+    description: "Advanced capabilities, multi-tribal collaboration"
+    status: "not_started"
+    due_date: "2027-09-30"
+    deliverables: []
+
+# Challenges & Mitigation
+challenges: []
+
+# Next Quarter Plans
+next_quarter_plans: []
+
+# Key Accomplishments
+key_accomplishments: []
+'''
+
+with open(f"{base_dir}/config/ntia_config.yaml", "w") as f:
+    f.write(ntia_config_yaml)
+
+print("✓ Created config/ntia_config.yaml")
