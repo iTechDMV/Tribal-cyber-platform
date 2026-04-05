@@ -1,0 +1,37 @@
+# 3. Tribal-ISAC Config
+isac_config_yaml = '''# Tribal-ISAC Configuration
+# For threat intelligence sharing
+
+tribal_id: "[YOUR TRIBAL-ISAC ID]"
+tribal_nation: "[YOUR TRIBAL NATION NAME]"
+tribal_region: "[NORTHWEST/SOUTHWEST/PLAINS/EASTERN/ETC]"
+
+# Membership
+membership_active: false
+membership_level: "standard"  # standard, premium
+data_sharing_level: "anonymized"  # aggregate, anonymized, full
+membership_date: ""
+
+# API Access
+api_endpoint: "https://api.tribal-isac.org/v1"
+api_key: "[YOUR API KEY]"
+
+# Threat Feeds
+threat_feeds:
+  - "critical"
+  - "high"
+  # - "medium"  # Uncomment if desired
+  # - "low"     # Uncomment if desired
+
+# Automated Sharing Rules
+automated_sharing:
+  enabled: false
+  severity_threshold: "medium"
+  exclude_pii: true
+  exclude_financial_data: true
+  tribal_council_approval_required: false  # For anonymized only
+  delay_hours: 0
+
+# Regional Coordination
+regional_partners: []  # Other tribes for joint response
+'''
