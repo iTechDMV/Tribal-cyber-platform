@@ -101,3 +101,22 @@ pre {
         padding: 40px 20px;
     }
 }
+
+/* Animated tribal-cyber mesh */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(45,212,191,0.08), transparent),
+                url('/assets/patterns/tribal-bg.svg');
+    background-size: 600px, 200px;
+    animation: meshMove 18s linear infinite;
+    opacity: 0.35;
+    z-index: -1;
+}
+
+@keyframes meshMove {
+    0% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(-40px, -30px) scale(1.05); }
+    100% { transform: translate(0,0) scale(1); }
+}
