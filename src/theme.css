@@ -1,0 +1,16 @@
+:root {
+  --bg: #0d1117;
+  --bg-elevated: #111827;
+  --border-subtle: rgba(148,163,184,0.25);
+  --accent: #22c55e;
+  --accent-cyan: #22d3ee;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+}
