@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="auth-wrapper hud-scan">
+    <div class="auth-card card">
+        <h1 class="auth-title">Create Your Account</h1>
+        <p class="auth-subtitle">Begin your sovereign cyber readiness journey.</p>
+
+        <form action="/register" method="POST">
+
+            <label>Full Name</label>
+            <input type="text" name="full_name" class="input-field" required>
+
+            <label>Email Address</label>
+            <input type="email" name="email" class="input-field" required>
+
+            <label>Username</label>
+            <input type="text" name="username" class="input-field" required>
+
+            <label>Password</label>
+            <input type="password" name="password" class="input-field" required>
+
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" class="input-field" required>
+
+            <button class="btn btn-primary" type="submit">Create Account</button>
+        </form>
+
+        <p class="auth-link-row">
+            <a href="/login" class="link">Already have an account?</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}
