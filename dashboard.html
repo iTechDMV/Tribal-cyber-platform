@@ -34,61 +34,87 @@
   </div>
 
   <div class="dashboard-grid">
-    <!-- Left: Security posture -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Security Posture</div>
-        <span class="badge badge-accent">Operational</span>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-tile">
-          <div class="stat-label">Incidents (Last 30 Days)</div>
-          <div class="stat-value">3</div>
-          <div class="stat-trend">All contained within SLA</div>
+    <!-- Left column: HUD scan + Security posture -->
+    <div>
+      <div class="card hud-scan">
+        <div class="hud-header">
+          <div>
+            <div class="hud-title">Live Scan</div>
+            <div class="hud-sub">Network &amp; endpoint telemetry</div>
+          </div>
+          <div>
+            <span class="badge badge-accent">Sweep active</span>
+          </div>
         </div>
-        <div class="stat-tile">
-          <div class="stat-label">Uptime</div>
-          <div class="stat-value">99.9%</div>
-          <div class="stat-trend">Across core Tribal infrastructure</div>
-        </div>
-        <div class="stat-tile">
-          <div class="stat-label">Protected Subscribers</div>
-          <div class="stat-value">1,000+</div>
-          <div class="stat-trend">DNS + CPE security enabled</div>
+
+        <div style="margin-top:12px; display:flex; gap:12px; align-items:center;">
+          <div>
+            <div class="stat-label">Last completed</div>
+            <div class="stat-value">3m ago</div>
+          </div>
+          <div>
+            <div class="stat-label">Active probes</div>
+            <div class="stat-value">12</div>
+          </div>
         </div>
       </div>
 
-      <div style="margin-top:16px;" class="table-wrap">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Alert</th>
-              <th>Severity</th>
-              <th>Status</th>
-              <th>Last Updated</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>DDoS attempt on core gateway</td>
-              <td><span class="badge badge-muted">High</span></td>
-              <td><span class="badge badge-accent">Mitigated</span></td>
-              <td>2 hours ago</td>
-            </tr>
-            <tr>
-              <td>Suspicious DNS queries</td>
-              <td><span class="badge badge-muted">Medium</span></td>
-              <td><span class="badge badge-accent">Under review</span></td>
-              <td>6 hours ago</td>
-            </tr>
-            <tr>
-              <td>Endpoint offline (remote site)</td>
-              <td><span class="badge badge-muted">Low</span></td>
-              <td><span class="badge badge-muted">Pending</span></td>
-              <td>1 day ago</td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- Security posture card -->
+      <div class="card" style="margin-top:14px;">
+        <div class="card-header">
+          <div class="card-title">Security Posture</div>
+          <span class="badge badge-accent">Operational</span>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-tile">
+            <div class="stat-label">Incidents (Last 30 Days)</div>
+            <div class="stat-value">3</div>
+            <div class="stat-trend">All contained within SLA</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-label">Uptime</div>
+            <div class="stat-value">99.9%</div>
+            <div class="stat-trend">Across core Tribal infrastructure</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-label">Protected Subscribers</div>
+            <div class="stat-value">1,000+</div>
+            <div class="stat-trend">DNS + CPE security enabled</div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;" class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Alert</th>
+                <th>Severity</th>
+                <th>Status</th>
+                <th>Last Updated</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>DDoS attempt on core gateway</td>
+                <td><span class="badge badge-muted">High</span></td>
+                <td><span class="badge badge-accent">Mitigated</span></td>
+                <td>2 hours ago</td>
+              </tr>
+              <tr>
+                <td>Suspicious DNS queries</td>
+                <td><span class="badge badge-muted">Medium</span></td>
+                <td><span class="badge badge-accent">Under review</span></td>
+                <td>6 hours ago</td>
+              </tr>
+              <tr>
+                <td>Endpoint offline (remote site)</td>
+                <td><span class="badge badge-muted">Low</span></td>
+                <td><span class="badge badge-muted">Pending</span></td>
+                <td>1 day ago</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
