@@ -1,15 +1,23 @@
-FROM python:3.12-slim
+# 1. Base image
+FROM python:3.11-slim
 
+# 2. Workdir
 WORKDIR /app
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# 3. Install system deps (if needed)
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
+# 4. Copy app code
+COPY . /app
+
+# 5. Install Python deps
+# Make sure requirements.txt exists and includes Flask, gunicorn, etc.
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+# 6. Expose port for Cloud Run
+ENV PORT=8080
 
-EXPOSE 8000
-
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
+# 7. Gunicorn entrypoint (Flask app named "app" in app.py)
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
