@@ -1,0 +1,17 @@
+<div class="card training-card">
+    <h2>{{ title }}</h2>
+
+    <p class="training-desc">
+        {{ desc }}
+    </p>
+
+    <ul class="training-highlights">
+        {% for item in highlights %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <a class="training-button" href="{{ url }}" target="_blank">
+        Launch Full CISA Training
+    </a>
+</div>
