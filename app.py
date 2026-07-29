@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 import os
+import logging
 from enum import Enum
 from flask import Flask, request, jsonify
 
-# Strict APP_ENV handling: require an explicit, valid value and fail fast.
+# Strict APP_ENV handling but allow a safe fallback with a warning
+logger = logging.getLogger(__name__)
+
 class AppEnv(str, Enum):
     PRODUCTION = "production"
     STAGING = "staging"
@@ -12,16 +15,23 @@ class AppEnv(str, Enum):
 
 _raw_app_env = os.getenv("APP_ENV")
 if _raw_app_env is None:
-    raise RuntimeError("APP_ENV is not set. Set APP_ENV to one of: "
-                       f"{[e.value for e in AppEnv]}")
-
-_app_env_normalized = _raw_app_env.strip().lower()
-if _app_env_normalized not in {e.value for e in AppEnv}:
-    raise RuntimeError(
-        f"Invalid APP_ENV: {_raw_app_env!r}. Allowed values: {[e.value for e in AppEnv]}"
+    # Missing -> warn and fall back to a safe local default
+    logger.warning(
+        "APP_ENV is not set. Falling back to %r for local/dev convenience. "
+        "Set APP_ENV to one of: %s",
+        AppEnv.DEVELOPMENT.value,
+        [e.value for e in AppEnv],
     )
+    APP_ENV = AppEnv.DEVELOPMENT.value
+else:
+    _app_env_normalized = _raw_app_env.strip().lower()
+    if _app_env_normalized not in {e.value for e in AppEnv}:
+        # Explicit but invalid -> fail fast so typos/misconfigurations are caught.
+        raise RuntimeError(
+            f"Invalid APP_ENV: {_raw_app_env!r}. Allowed values: {[e.value for e in AppEnv]}"
+        )
+    APP_ENV = _app_env_normalized
 
-APP_ENV = _app_env_normalized
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret")
 NTIA_MODE = os.environ.get("NTIA_MODE", "standard")
 BIA_ENDPOINT = os.environ.get("BIA_ENDPOINT", "https://bia.gov/api")
