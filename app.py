@@ -1,5 +1,49 @@
 #!/usr/bin/env python3
 import os
+from flask import Flask, request, jsonify
+
+APP_ENV = os.environ.get("APP_ENV", "production")
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret")
+NTIA_MODE = os.environ.get("NTIA_MODE", "standard")
+BIA_ENDPOINT = os.environ.get("BIA_ENDPOINT", "https://bia.gov/api")
+
+app = Flask(__name__)
+app.secret_key = SECRET_KEY
+app.config["APP_ENV"] = APP_ENV
+app.config["NTIA_MODE"] = NTIA_MODE
+app.config["BIA_ENDPOINT"] = BIA_ENDPOINT
+
+@app.after_request
+def apply_security_headers(response):
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    response.headers["Referrer-Policy"] = "strict-origin"
+    response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
+    response.headers["Cache-Control"] = "no-store"
+    response.headers["X-Tribal-Sovereignty"] = "Protected"
+    response.headers["X-FIPS-Compliance"] = "AES-256-GCM"
+    return response
+
+@app.route("/healthz")
+def healthz():
+    return {"status": "ok", "service": "tribal-cyber-platform"}, 200
+
+from src.federal.ntia_compliance import evaluate_ntia_controls
+from src.federal.bia_integration import fetch_bia_requirements
+
+@app.route("/api/ntia/evaluate", methods=["POST"])
+def ntia_evaluate():
+    payload = request.json
+    results = evaluate_ntia_controls(payload)
+    return jsonify({"ntia_mode": NTIA_MODE, "results": results})
+
+@app.route("/api/bia/requirements", methods=["GET"])
+def bia_requirements():
+    data = fetch_bia_requirements(app.config["BIA_ENDPOINT"])
+    return jsonify({"source": app.config["BIA_ENDPOINT"], "requirements": data})
+
+import os
 import sqlite3
 from flask import (
     Flask, render_template, request, jsonify, g
