@@ -45,14 +45,17 @@ app.config["APP_ENV"] = APP_ENV
 app.config["NTIA_MODE"] = NTIA_MODE
 app.config["BIA_ENDPOINT"] = BIA_ENDPOINT
 
+from src.federal.ntia_compliance import evaluate_ntia_controls
+from src.federal.bia_integration import fetch_bia_requirements
 
 @app.route("/healthz")
 def healthz():
     return {"status": "ok", "service": "tribal-cyber-platform"}, 200
 
-from src.federal.ntia_compliance import evaluate_ntia_controls
-from src.federal.bia_integration import fetch_bia_requirements
-
+@app.route("/")
+def index():
+    return render_template("index.html")
+    
 @app.route("/api/ntia/evaluate", methods=["POST"])
 def ntia_evaluate():
     payload = request.json
