@@ -1,8 +1,27 @@
 #!/usr/bin/env python3
 import os
+from enum import Enum
 from flask import Flask, request, jsonify
 
-APP_ENV = os.environ.get("APP_ENV", "production")
+# Strict APP_ENV handling: require an explicit, valid value and fail fast.
+class AppEnv(str, Enum):
+    PRODUCTION = "production"
+    STAGING = "staging"
+    DEVELOPMENT = "development"
+    TEST = "test"
+
+_raw_app_env = os.getenv("APP_ENV")
+if _raw_app_env is None:
+    raise RuntimeError("APP_ENV is not set. Set APP_ENV to one of: "
+                       f"{[e.value for e in AppEnv]}")
+
+_app_env_normalized = _raw_app_env.strip().lower()
+if _app_env_normalized not in {e.value for e in AppEnv}:
+    raise RuntimeError(
+        f"Invalid APP_ENV: {_raw_app_env!r}. Allowed values: {[e.value for e in AppEnv]}"
+    )
+
+APP_ENV = _app_env_normalized
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret")
 NTIA_MODE = os.environ.get("NTIA_MODE", "standard")
 BIA_ENDPOINT = os.environ.get("BIA_ENDPOINT", "https://bia.gov/api")
