@@ -13,17 +13,6 @@ app.config["APP_ENV"] = APP_ENV
 app.config["NTIA_MODE"] = NTIA_MODE
 app.config["BIA_ENDPOINT"] = BIA_ENDPOINT
 
-@app.after_request
-def apply_security_headers(response):
-    response.headers["X-Content-Type-Options"] = "nosniff"
-    response.headers["X-Frame-Options"] = "DENY"
-    response.headers["X-XSS-Protection"] = "1; mode=block"
-    response.headers["Referrer-Policy"] = "strict-origin"
-    response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
-    response.headers["Cache-Control"] = "no-store"
-    response.headers["X-Tribal-Sovereignty"] = "Protected"
-    response.headers["X-FIPS-Compliance"] = "AES-256-GCM"
-    return response
 
 @app.route("/healthz")
 def healthz():
@@ -54,6 +43,19 @@ from flask import (
 # ─────────────────────────────────────────────
 app = Flask(__name__, static_folder="static", template_folder="templates")
 app.secret_key = os.environ.get("SECRET_KEY", "dev-secret")
+
+# Security headers middleware attached to the main app instance
+@app.after_request
+def apply_security_headers(response):
+    response.headers["X-Tribal-Sovereignty"] = "Protected"
+    response.headers["X-FIPS-Compliance"] = "AES-256-GCM"
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    response.headers["Referrer-Policy"] = "strict-origin"
+    response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
+    response.headers["Cache-Control"] = "no-store"
+    return response
 
 DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "instance", "tribal_cyber.db")
 
@@ -125,4 +127,3 @@ def api_score():
 # ─────────────────────────────────────────────
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080, debug=True)
-
