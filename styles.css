@@ -351,4 +351,36 @@ body::before {
 .link:hover {
     text-decoration: underline;
 }
+/* ============================================================
+   CINEMATIC AUTH SCREENS
+   ============================================================ */
 
+.auth-wrapper {
+    max-width: 480px;
+    margin: 60px auto;
+}
+
+.auth-card {
+    padding: 32px;
+    border-radius: 18px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-glass);
+    backdrop-filter: blur(18px) saturate(180%);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.55);
+}
+
+.auth-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.auth-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 22px;
+}
+
+.auth-link-row {
+    margin-top: 18px;
+    text-align: center;
+}
