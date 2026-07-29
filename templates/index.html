@@ -1,69 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Tribal Cybersecurity Platform</title>
-  <link rel="stylesheet" href="static/styles.css">
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 
-<header class="top-nav">
-  <div class="top-nav-left">
-    <div class="brand-mark"></div>
-    <div class="top-nav-title">Tribal Cyber Platform</div>
-  </div>
-  <nav class="top-nav-links">
-    <a href="index.html" class="active">Overview</a>
-    <a href="funding.html">Funding</a>
-    <a href="workforce.html">Workforce</a>
-    <a href="dashboard.html">Dashboard</a>
-  </nav>
-</header>
+<div class="landing-wrapper hud-scan">
 
-<main class="page">
-  <h1 class="page-title">Tribal Cybersecurity Platform</h1>
-  <p class="page-subtitle">Federal funding ready — NTIA TBCP 2026 & BIA aligned.</p>
+    <section class="landing-hero">
+        <h1 class="landing-title">
+            Sovereign Cybersecurity<br>
+            <span class="landing-gradient">For Tribal Nations</span>
+        </h1>
 
-  <div class="btn-row" style="margin-bottom:16px;">
-    <button class="btn btn-primary">View Funding Alignment</button>
-    <button class="btn btn-outline">Download Compliance Checklist</button>
-    <button class="btn btn-ghost">View Repository</button>
-  </div>
+        <p class="landing-subtitle">
+            A cinematic, sovereign‑tech platform built for tribal governments,
+            delivering automated NIST 800‑171 scoring, NTIA compliance, and
+            grant‑ready cybersecurity readiness.
+        </p>
 
-  <div class="stats-grid">
-    <div class="stat-tile">
-      <div class="stat-label">Households Protected</div>
-      <div class="stat-value">1,000+</div>
-      <div class="stat-trend">Target: 1,500 in 18 months</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-label">Anchor Institutions Secured</div>
-      <div class="stat-value">25+</div>
-      <div class="stat-trend">Growing with regional hubs</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-label">Tribal Citizens Trained / Year</div>
-      <div class="stat-value">20+</div>
-      <div class="stat-trend">Scaling via TCU partnerships</div>
-    </div>
-  </div>
+        <div class="landing-cta">
+            <a href="/login" class="btn btn-primary landing-btn">Enter Platform</a>
+            <a href="/register" class="btn btn-outline landing-btn">Create Account</a>
+        </div>
+    </section>
 
-  <div style="margin-top:24px;" class="card">
-    <div class="card-header">
-      <div>
-        <div class="card-title">Purpose</div>
-        <div class="card-subtitle">Sovereignty‑first cybersecurity for Tribal Nations.</div>
-      </div>
-      <span class="badge badge-accent">NTIA TBCP 2026 Ready</span>
-    </div>
-    <ul>
-      <li>Secure broadband infrastructure serving Tribal communities.</li>
-      <li>Align with NTIA TBCP 2026 and BIA TPA/CSC programs.</li>
-      <li>Protect Tribal data sovereignty with on‑Tribal‑land deployment.</li>
-      <li>Build Tribal cybersecurity workforce and economic resilience.</li>
-    </ul>
-  </div>
-</main>
+    <section class="landing-stats">
+        <div class="stat-card card hud-scan">
+            <div class="stat-number">574</div>
+            <div class="stat-label">Federally Recognized Tribal Nations</div>
+        </div>
 
-</body>
-</html>
+        <div class="stat-card card hud-scan">
+            <div class="stat-number">800‑171</div>
+            <div class="stat-label">Controls Automated</div>
+        </div>
+
+        <div class="stat-card card hud-scan">
+            <div class="stat-number">NTIA</div>
+            <div class="stat-label">Tribal Broadband Compliance</div>
+        </div>
+    </section>
+
+</div>
+
+{% endblock %}
