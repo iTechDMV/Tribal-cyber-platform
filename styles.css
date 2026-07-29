@@ -384,3 +384,78 @@ body::before {
     margin-top: 18px;
     text-align: center;
 }
+/* ============================================================
+   CINEMATIC LANDING PAGE
+   ============================================================ */
+
+.landing-wrapper {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.landing-hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.landing-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+
+.landing-gradient {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.landing-subtitle {
+    max-width: 700px;
+    margin: 0 auto 28px;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+}
+
+.landing-cta {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.landing-btn {
+    padding: 12px 26px;
+    font-size: 1rem;
+}
+
+/* ---------- Landing Stats ---------- */
+
+.landing-stats {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+    padding: 0 20px;
+}
+
+.stat-card {
+    padding: 28px 20px;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
