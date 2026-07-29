@@ -28,4 +28,5 @@ jobs:
           --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/tribal-platform \
           --region us-east4 \
           --platform managed \
-          --allow-unauthenticated
+          --allow-unauthenticated \
+          --set-env-vars APP_ENV=production
