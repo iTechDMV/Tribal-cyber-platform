@@ -18,6 +18,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # 6. Expose port for Cloud Run
 ENV PORT=8080
+# Ensure the container image has a production APP_ENV by default
+ENV APP_ENV=production
 
 # 7. Gunicorn entrypoint (Flask app named "app" in app.py)
 CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
