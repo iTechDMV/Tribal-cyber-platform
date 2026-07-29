@@ -4,6 +4,9 @@ import logging
 from enum import Enum
 from flask import Flask, request, jsonify
 
+# Configure basic logging so warnings about APP_ENV are visible by default
+logging.basicConfig(level=logging.INFO)
+
 # Strict APP_ENV handling but allow a safe fallback with a warning
 logger = logging.getLogger(__name__)
 
