@@ -1,0 +1,7 @@
+{
+  "id": "string",
+  "title": "string",
+  "durationMinutes": 20,
+  "contentType": "video|pdf|interactive",
+  "requiredForRoles": ["IT", "finance"]
+}
