@@ -1,0 +1,5 @@
+{
+  "userId": "string",
+  "method": "hardware|app|sms",
+  "timestamp": "string"
+}
