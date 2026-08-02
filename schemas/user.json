@@ -1,0 +1,12 @@
+{
+  "id": "string",
+  "name": "string",
+  "email": "string",
+  "officeId": "string",
+  "role": "string",
+  "mfa": {
+    "enrolled": true,
+    "methods": ["app", "sms"],
+    "lastVerifiedAt": "2026-07-30T07:46:00"
+  }
+}
