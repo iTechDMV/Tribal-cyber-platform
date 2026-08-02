@@ -1,0 +1,8 @@
+{
+  "id": "string",
+  "title": "string",
+  "category": "MFA|AccessControl|IncidentResponse",
+  "effectiveDate": "string",
+  "reviewDate": "string",
+  "status": "draft|adopted|superseded"
+}
